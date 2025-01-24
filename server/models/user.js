@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const joi = require('joi');
+const Joi = require('joi');
 const passwordComplexity = require("joi-password-complexity");
 
 
@@ -22,10 +22,13 @@ const validate = (data) => {
     const schema = Joi.object({
         firstName: Joi.string().required().label("First Name"),
         lastName: Joi.string().required().label("Last Name"),
-        email: Joi.string().email().label("Email"),
-        password: passwordComplexity().requried().label("Password")
+        email: Joi.string().email().required().label("Email"), 
+        password: passwordComplexity().required().label("Password")
     });
-    return schema.validate.data
-}
+
+    // Validate the data against the schema
+    const { error } = schema.validate(data);
+    return { error }; // Return an object with the error property
+};
 
 module.exports = { User, validate };

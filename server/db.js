@@ -10,13 +10,11 @@ module.exports = async () => {
             throw new Error("DB connection string not defined in environment variables.");
         }
 
-        // Connect to the MongoDB database
-        await mongoose.connect(dbUri, {
-            useNewUrlParser: true,   // To handle the deprecation warnings
-            useUnifiedTopology: true, // To use the newer connection management engine
-        });
+        // Connect to the MongoDB database using async/await
+        await mongoose.connect(dbUri);
 
-        console.log("Connected to the database successfully");
+        console.log("MongoDB Connected");
+
     } catch (error) {
         console.error("Could not connect to the database:", error);
     }

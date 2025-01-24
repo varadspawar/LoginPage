@@ -22,7 +22,7 @@ const Signup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/users";
+			const url = "http://localhost:5000/api/users";
 			const { data: res } = await axios.post(url, data);
 			navigate("/login");
 			console.log(res.message);
@@ -44,7 +44,7 @@ const Signup = () => {
 					<h1>Welcome Back</h1>
 					<Link to="/login">
 						<button type="button" className={styles.white_btn}>
-							Sign in
+							Login
 						</button>
 					</Link>
 				</div>

@@ -15,7 +15,10 @@ connection() ;
 
 //middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow only this origin
+    credentials: true, // Allow cookies (if needed)
+  }));
 
 
 // routes
@@ -23,5 +26,5 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Listening on port ${port}......`));
